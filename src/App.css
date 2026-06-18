@@ -98,6 +98,94 @@ html, body {
     radial-gradient(1px 1px at 92% 15%, rgba(250,228,151,0.6) 0%, transparent 100%),
     radial-gradient(1.5px 1.5px at 40% 45%, rgba(228,172,13,0.4) 0%, transparent 100%),
     radial-gradient(1px 1px at 75% 55%, rgba(250,228,151,0.5) 0%, transparent 100%);
+  animation: sparkleTwinkle 4s ease-in-out infinite;
+}
+
+/* ── FAIRY DUST ── */
+
+.fairy-dust {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.fairy-dust::before,
+.fairy-dust::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  top: -100%;
+  left: 0;
+  background-repeat: no-repeat;
+  animation: dustFall 8s linear infinite;
+}
+
+.fairy-dust::before {
+  background-image:
+    radial-gradient(2px 2px at 8% 10%, rgba(250,228,151,0.9) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 22% 40%, rgba(228,172,13,0.7) 0%, transparent 100%),
+    radial-gradient(2.5px 2.5px at 35% 15%, rgba(250,228,151,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 48% 55%, rgba(228,172,13,0.8) 0%, transparent 100%),
+    radial-gradient(2px 2px at 60% 25%, rgba(250,228,151,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 75% 60%, rgba(228,172,13,0.7) 0%, transparent 100%),
+    radial-gradient(2px 2px at 88% 30%, rgba(250,228,151,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 95% 70%, rgba(228,172,13,0.5) 0%, transparent 100%);
+  background-size: 4px 4px, 3px 3px, 5px 5px, 2px 2px, 4px 4px, 3px 3px, 4px 4px, 2px 2px;
+}
+
+.fairy-dust::after {
+  background-image:
+    radial-gradient(1.5px 1.5px at 15% 30%, rgba(250,228,151,0.6) 0%, transparent 100%),
+    radial-gradient(2px 2px at 28% 70%, rgba(228,172,13,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 42% 20%, rgba(250,228,151,0.7) 0%, transparent 100%),
+    radial-gradient(2.5px 2.5px at 55% 80%, rgba(228,172,13,0.6) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 68% 35%, rgba(250,228,151,0.5) 0%, transparent 100%),
+    radial-gradient(2px 2px at 82% 65%, rgba(228,172,13,0.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 92% 15%, rgba(250,228,151,0.4) 0%, transparent 100%),
+    radial-gradient(2px 2px at 5% 85%, rgba(228,172,13,0.6) 0%, transparent 100%);
+  background-size: 3px 3px, 4px 4px, 2px 2px, 5px 5px, 3px 3px, 4px 4px, 2px 2px, 4px 4px;
+  animation-duration: 10s;
+  animation-delay: -4s;
+}
+
+/* ── ANIMATIONS ── */
+
+@keyframes sparkleTwinkle {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes dustFall {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(50%); opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.3); }
+}
+
+.anim-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.anim-float-delayed {
+  animation: float 3s ease-in-out infinite;
+  animation-delay: -1.5s;
+}
+
+.anim-glow {
+  animation: glowPulse 2s ease-in-out infinite;
 }
 
 /* ── PAGE CONTENT ── */
@@ -146,12 +234,13 @@ html, body {
 }
 
 .cover-name {
-  font-family: 'Fredoka', sans-serif;
-  font-size: 3.8rem;
+  font-family: 'Dancing Script', cursive;
+  font-size: 4rem;
   font-weight: 700;
   color: var(--gold);
   text-shadow: 0 2px 30px rgba(0,0,0,0.7), 0 0 60px rgba(228,172,13,0.15);
   line-height: 1.05;
+  animation: glowPulse 2s ease-in-out infinite;
 }
 
 .cover-stars {
@@ -161,12 +250,11 @@ html, body {
 }
 
 .cover-age {
-  font-family: 'Fredoka', sans-serif;
-  font-size: 2rem;
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.2rem;
   font-weight: 600;
   color: var(--gold);
   text-shadow: 0 2px 20px rgba(0,0,0,0.6), 0 0 30px rgba(228,172,13,0.15);
-  letter-spacing: 2px;
 }
 
 .cover-invite {
@@ -199,8 +287,8 @@ html, body {
 }
 
 .page-title {
-  font-family: 'Fredoka', sans-serif;
-  font-size: 2.4rem;
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.6rem;
   font-weight: 700;
   color: var(--gold);
   text-align: center;
@@ -216,8 +304,8 @@ html, body {
 }
 
 .page-age {
-  font-family: 'Fredoka', sans-serif;
-  font-size: 3rem;
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.4rem;
   font-weight: 700;
   color: var(--gold);
   text-align: center;
@@ -592,48 +680,7 @@ html, body {
   height: 24px;
 }
 
-/* ── DECORATIVE IMAGES ── */
 
-.deco {
-  position: absolute;
-  z-index: 2;
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-select: none;
-  object-fit: contain;
-}
-
-.deco-bl {
-  bottom: 0;
-  left: 0;
-  width: min(220px, 40vw);
-  height: auto;
-  transform: translate(-2%, 4%);
-}
-
-.deco-br {
-  bottom: 0;
-  right: 0;
-  width: min(220px, 40vw);
-  height: auto;
-  transform: translate(2%, 4%);
-}
-
-.deco-tr {
-  top: 0;
-  right: 0;
-  width: min(180px, 35vw);
-  height: auto;
-  transform: translate(4%, -4%);
-}
-
-.deco-tl {
-  top: 0;
-  left: 0;
-  width: min(180px, 35vw);
-  height: auto;
-  transform: translate(-4%, -4%);
-}
 
 @keyframes slideUp {
   from { transform: translateY(100%); }

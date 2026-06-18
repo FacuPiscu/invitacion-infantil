@@ -185,13 +185,13 @@ function App() {
         <img src={IMG[0]} alt="" className="page-img" />
         <div className="page-gradient" />
         <div className="sparkles" />
-        <img src="/paleta/pngwing.com.png" alt="" className="deco deco-br" />
+        <div className="fairy-dust" />
         <div className="page-content cover-content">
-          <div className="cover-icons"><SparklesIcon /> <WandIcon /> <SparklesIcon /></div>
+          <div className="cover-icons"><SparklesIcon className="anim-float" /> <WandIcon className="anim-glow" /> <SparklesIcon className="anim-float-delayed" /></div>
           <p className="cover-pre">Habia una vez...</p>
           <h1 className="cover-name">Nacia Delfina</h1>
           <div className="cover-stars">
-            <StarIcon /> <CrownIcon /> <StarIcon />
+            <StarIcon className="anim-float" /> <CrownIcon className="anim-glow" /> <StarIcon className="anim-float-delayed" />
           </div>
           <p className="cover-age">2 añitos</p>
           <p className="cover-invite">Te invitamos a celebrar</p>
@@ -201,9 +201,8 @@ function App() {
       <section className="page">
         <img src={IMG[1]} alt="" className="page-img page-img-zoom" />
         <div className="page-gradient" />
-        <img src="/paleta/pngegg (12).png" alt="" className="deco deco-bl" />
         <div className="page-content page-content-center">
-          <BookIcon className="page-deco-icon" />
+          <BookIcon className="page-deco-icon anim-float" />
           <p className="page-text">
             Habia una vez, en un reino no muy lejano, hace no mucho tiempo, un Rey y una Reina que anhelaban una hija
           </p>
@@ -213,9 +212,8 @@ function App() {
       <section className="page">
         <img src={IMG[2]} alt="" className="page-img" />
         <div className="page-gradient" />
-        <img src="/paleta/5874d03542e4d628738559ed.png" alt="" className="deco deco-br" />
         <div className="page-content page-content-center">
-          <CastleIcon className="page-deco-icon" />
+          <CastleIcon className="page-deco-icon anim-float-delayed" />
           <p className="page-text">
             Un dia, su deseo fue cumplido y fueron bendecidos con una hermosa nina que llamaron <span className="page-name">Nacia Delfina</span>
           </p>
@@ -225,7 +223,6 @@ function App() {
       <section className="page">
         <img src={IMG[3]} alt="" className="page-img" />
         <div className="page-gradient" />
-        <img src="/paleta/pngwing.com.png" alt="" className="deco deco-bl" />
         <div className="page-content page-content-center">
           <div className="page-deco-row"><TreeIcon /> <FlowerIcon /> <TreeIcon /></div>
           <p className="page-text">
@@ -237,9 +234,8 @@ function App() {
       <section className="page">
         <img src={IMG[4]} alt="" className="page-img" />
         <div className="page-gradient" />
-        <img src="/paleta/pngegg (12).png" alt="" className="deco deco-tr" />
         <div className="page-content page-content-center">
-          <CrownIcon className="page-deco-icon" />
+          <CrownIcon className="page-deco-icon anim-glow" />
           <p className="page-text page-text-center">El palacio esta de fiesta</p>
           <h2 className="page-title">porque nuestra princesa</h2>
           <p className="page-age">cumple 2 añitos</p>
