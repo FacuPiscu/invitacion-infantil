@@ -51,29 +51,61 @@ function App() {
   const [apellido, setApellido] = useState('')
   const [familiaNombre, setFamiliaNombre] = useState('')
   const [cantidad, setCantidad] = useState('')
+  const interactedRef = useRef(false)
+  const interactionTimeRef = useRef(0)
 
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
 
-    const t = setTimeout(() => {
-      audio.muted = false
-    }, 500)
+    const tryPlay = () => {
+      if (audio.paused) {
+        audio.play().then(() => setPlaying(true)).catch(() => {})
+      }
+    }
 
-    const unmute = () => { audio.muted = false }
-    document.addEventListener('touchstart', unmute, { once: true })
-    document.addEventListener('click', unmute, { once: true })
+    audio.addEventListener('canplay', tryPlay)
+    tryPlay()
+
+    const retry = setInterval(tryPlay, 300)
+    setTimeout(() => clearInterval(retry), 5000)
+
+    const onInteraction = () => {
+      if (interactedRef.current) return
+      interactionTimeRef.current = Date.now()
+      interactedRef.current = true
+      audio.muted = false
+      if (audio.paused) {
+        audio.play().then(() => setPlaying(true)).catch(() => {})
+      }
+    }
+
+    document.addEventListener('touchstart', onInteraction, { once: true })
+    document.addEventListener('mousedown', onInteraction, { once: true })
 
     return () => {
-      clearTimeout(t)
-      document.removeEventListener('touchstart', unmute)
-      document.removeEventListener('click', unmute)
+      audio.removeEventListener('canplay', tryPlay)
+      clearInterval(retry)
+      document.removeEventListener('touchstart', onInteraction)
+      document.removeEventListener('mousedown', onInteraction)
     }
   }, [])
 
   const togglePlay = useCallback(() => {
     const audio = audioRef.current
     if (!audio) return
+
+    if (!interactedRef.current) {
+      interactedRef.current = true
+      audio.muted = false
+      if (audio.paused) {
+        audio.play().then(() => setPlaying(true)).catch(() => {})
+      }
+      return
+    }
+
+    if (Date.now() - interactionTimeRef.current < 300) return
+
     if (audio.paused) {
       audio.play().then(() => setPlaying(true)).catch(() => {})
     } else {
