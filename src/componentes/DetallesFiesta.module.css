@@ -14,38 +14,6 @@
   overflow: hidden;
 }
 
-.decEsquinaSup {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 1;
-  width: 32vw;
-  height: auto;
-  pointer-events: none;
-  user-select: none;
-  mix-blend-mode: soft-light;
-  filter: saturate(75%) sepia(25%);
-  -webkit-mask-image: linear-gradient(to left, transparent 0%, black 15%, black 80%, transparent 100%);
-  mask-image: linear-gradient(to left, transparent 0%, black 15%, black 80%, transparent 100%);
-  transform: translate(8%, -8%);
-}
-
-.decEsquinaInf {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  width: 36vw;
-  height: auto;
-  pointer-events: none;
-  user-select: none;
-  mix-blend-mode: soft-light;
-  filter: saturate(70%) sepia(20%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 80%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, black 15%, black 80%, transparent 100%);
-  transform: translate(-6%, 6%);
-}
-
 .contenido {
   position: relative;
   z-index: 2;

@@ -107,38 +107,6 @@
   100% { transform: translateY(50%); opacity: 0; }
 }
 
-.marcaAgua {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  width: 55vw;
-  height: auto;
-  pointer-events: none;
-  user-select: none;
-  mix-blend-mode: soft-light;
-  filter: saturate(80%) sepia(20%);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%);
-}
-
-.decEsquinaSup {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 2;
-  width: 32vw;
-  height: auto;
-  pointer-events: none;
-  user-select: none;
-  mix-blend-mode: soft-light;
-  filter: saturate(70%) sepia(30%);
-  -webkit-mask-image: linear-gradient(to left, transparent 0%, black 20%, black 80%, transparent 100%);
-  mask-image: linear-gradient(to left, transparent 0%, black 20%, black 80%, transparent 100%);
-  transform: translate(10%, -10%);
-}
-
 .contenido {
   position: absolute;
   z-index: 3;
