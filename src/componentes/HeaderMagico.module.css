@@ -107,6 +107,19 @@
   100% { transform: translateY(50%); opacity: 0; }
 }
 
+.decRecorte {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  width: 30vw;
+  max-width: 140px;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  transform: translate(5%, 0%);
+}
+
 .contenido {
   position: absolute;
   z-index: 3;
