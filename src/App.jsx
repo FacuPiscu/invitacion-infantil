@@ -177,12 +177,22 @@ function App() {
 
           <div style={{
             position: 'relative', width: '100%',
-            maxWidth: 360, height: 320, borderRadius: 16, overflow: 'hidden',
+            maxWidth: 360, height: 320, borderRadius: 16, overflow: 'visible',
             boxShadow: '0 4px 30px rgba(0,0,0,0.4)',
             border: '2px solid rgba(212,160,23,0.15)',
             marginTop: 10
           }}>
-            <div ref={mapRef} style={{ width: '100%', height: '100%' }} />
+            <div ref={mapRef} style={{ width: '100%', height: '100%', borderRadius: 16 }} />
+            <img src="/paleta/pngegg.png" alt="" style={{
+              position: 'absolute', top: -6, left: -6, zIndex: 3,
+              width: '16vw', maxWidth: 70, height: 'auto',
+              pointerEvents: 'none', userSelect: 'none'
+            }} />
+            <img src="/paleta/pngegg (1).png" alt="" style={{
+              position: 'absolute', bottom: -6, right: -6, zIndex: 3,
+              width: '18vw', maxWidth: 80, height: 'auto',
+              pointerEvents: 'none', userSelect: 'none'
+            }} />
           </div>
 
           <div style={{
@@ -197,6 +207,16 @@ function App() {
               position: 'absolute', inset: 0,
               background: 'linear-gradient(180deg, transparent 50%, rgba(13,40,24,0.7) 100%)',
               pointerEvents: 'none'
+            }} />
+            <img src="/paleta/pngwing.com.png" alt="" style={{
+              position: 'absolute', top: 0, right: 0, zIndex: 2,
+              width: '18vw', maxWidth: 80, height: 'auto',
+              pointerEvents: 'none', userSelect: 'none'
+            }} />
+            <img src="/paleta/pngegg.png" alt="" style={{
+              position: 'absolute', bottom: 0, left: 0, zIndex: 2,
+              width: '20vw', maxWidth: 90, height: 'auto',
+              pointerEvents: 'none', userSelect: 'none'
             }} />
           </div>
         </div>

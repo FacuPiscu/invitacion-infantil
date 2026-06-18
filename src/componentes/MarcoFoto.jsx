@@ -14,6 +14,8 @@ export default function MarcoFoto({
     <section className={estilos.seccion}>
       <img src={src} alt="" className={claseFondo} />
       <div className={estilos.gradiente} />
+      <img src="/paleta/pngwing.com.png" alt="" className={estilos.marcoSupDer} />
+      <img src="/paleta/pngegg (1).png" alt="" className={estilos.marcoInfIzq} />
 
       <div className={estilos.marcoExterior}>
         <img src={src} alt={alt} className={estilos.foto} />

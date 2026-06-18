@@ -146,3 +146,27 @@
 .filaIconos svg:last-child {
   color: var(--oro-claro);
 }
+
+.marcoSupDer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  width: 16vw;
+  max-width: 80px;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.marcoInfIzq {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  width: 18vw;
+  max-width: 90px;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
