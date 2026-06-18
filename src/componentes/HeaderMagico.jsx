@@ -8,6 +8,8 @@ export default function HeaderMagico({ imgSrc }) {
       <div className={estilos.gradiente} />
       <div className={estilos.centelleos} />
       <div className={estilos.polvoHadas} />
+      <img src="/paleta/blancanieves-recorte.png" alt="" className={estilos.marcaAgua} />
+      <img src="/paleta/pngegg (12).png" alt="" className={estilos.decEsquinaSup} />
 
       <div className={estilos.contenido}>
         <div className={estilos.iconos}>

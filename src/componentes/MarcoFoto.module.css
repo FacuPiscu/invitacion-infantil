@@ -146,3 +146,27 @@
 .filaIconos svg:last-child {
   color: var(--oro-claro);
 }
+
+.decEsquinaSup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 28vw;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  transform: translate(-10%, -10%);
+}
+
+.decEsquinaInf {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  width: 30vw;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  transform: translate(8%, 8%);
+}
