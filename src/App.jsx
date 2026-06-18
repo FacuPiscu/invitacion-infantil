@@ -150,11 +150,6 @@ function App() {
         `,
         overflow: 'hidden'
       }}>
-        <img src="/paleta/blancanieves-y-los-7-enanitos.jpg" alt="" style={{
-          position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)',
-          width: '70vw', height: 'auto', opacity: 0.08, pointerEvents: 'none', userSelect: 'none',
-          zIndex: 1
-        }} />
         <div style={{
           display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14,
           position: 'relative', zIndex: 2, width: '100%', maxWidth: 380
