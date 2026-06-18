@@ -7,6 +7,8 @@ export default function MarcoFoto({
   iconoDecorativo: Icono = null,
   filaIconos: FilaIconos = null,
   children,
+  mostrarMarcoSupDer = true,
+  mostrarMarcoInfIzq = true,
 }) {
   const claseFondo = zoom ? `${estilos.fondoImg} ${estilos.fondoImgZoom}` : estilos.fondoImg
 
@@ -14,8 +16,8 @@ export default function MarcoFoto({
     <section className={estilos.seccion}>
       <img src={src} alt="" className={claseFondo} />
       <div className={estilos.gradiente} />
-      <img src="/paleta/pngwing.com.png" alt="" className={estilos.marcoSupDer} />
-      <img src="/paleta/pngegg (1).png" alt="" className={estilos.marcoInfIzq} />
+      {mostrarMarcoSupDer && <img src="/paleta/pngwing.com.png" alt="" className={estilos.marcoSupDer} />}
+      {mostrarMarcoInfIzq && <img src="/paleta/pngegg (1).png" alt="" className={estilos.marcoInfIzq} />}
 
       <div className={estilos.marcoExterior}>
         <img src={src} alt={alt} className={estilos.foto} />

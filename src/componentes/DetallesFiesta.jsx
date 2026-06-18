@@ -23,8 +23,6 @@ export default function DetallesFiesta({ ubicacion, fechaEvento }) {
 
   return (
     <section className={estilos.seccion}>
-      <img src="/paleta/pngegg (1).png" alt="" className={estilos.marcoSupIzq} />
-      <img src="/paleta/pngwing.com.png" alt="" className={estilos.marcoInfDer} />
       <div className={estilos.contenido}>
         <CrownIcon className="anim-brillar" style={{ width: 28, height: 28, color: 'var(--oro-claro)', opacity: 0.6 }} />
         <p className={estilos.textoIntro}>El palacio esta de fiesta</p>

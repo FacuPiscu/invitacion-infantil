@@ -107,6 +107,7 @@ function App() {
         alt="Nacia Delfina"
         zoom
         iconoDecorativo={BookIcon}
+        mostrarMarcoSupDer={false}
       >
         <p style={{ fontSize: '1.2rem', lineHeight: 1.6, color: '#f5efe0', textShadow: '0 2px 16px rgba(0,0,0,0.7)' }}>
           Habia una vez, en un reino no muy lejano, hace no mucho tiempo, un Rey y una Reina que anhelaban una hija
@@ -117,6 +118,8 @@ function App() {
         src={IMG[2]}
         alt="Nacia Delfina"
         iconoDecorativo={CastleIcon}
+        mostrarMarcoSupDer={false}
+        mostrarMarcoInfIzq={false}
       >
         <p style={{ fontSize: '1.2rem', lineHeight: 1.6, color: '#f5efe0', textShadow: '0 2px 16px rgba(0,0,0,0.7)' }}>
           Un dia, su deseo fue cumplido y fueron bendecidos con una hermosa nina que llamaron{' '}
@@ -130,6 +133,8 @@ function App() {
         src={IMG[3]}
         alt="Nacia Delfina"
         filaIconos={<><TreeIcon /><FlowerIcon /><TreeIcon /></>}
+        mostrarMarcoSupDer={false}
+        mostrarMarcoInfIzq={false}
       >
         <p style={{ fontSize: '1.2rem', lineHeight: 1.6, color: '#f5efe0', textShadow: '0 2px 16px rgba(0,0,0,0.7)' }}>
           El tiempo volo y la princesa crecio, llenando cada dia de magia y alegria
@@ -177,22 +182,12 @@ function App() {
 
           <div style={{
             position: 'relative', width: '100%',
-            maxWidth: 360, height: 320, borderRadius: 16, overflow: 'visible',
+            maxWidth: 360, height: 320, borderRadius: 16, overflow: 'hidden',
             boxShadow: '0 4px 30px rgba(0,0,0,0.4)',
             border: '2px solid rgba(212,160,23,0.15)',
             marginTop: 10
           }}>
-            <div ref={mapRef} style={{ width: '100%', height: '100%', borderRadius: 16 }} />
-            <img src="/paleta/pngegg.png" alt="" style={{
-              position: 'absolute', top: -6, left: -6, zIndex: 3,
-              width: '16vw', maxWidth: 70, height: 'auto',
-              pointerEvents: 'none', userSelect: 'none'
-            }} />
-            <img src="/paleta/pngegg (1).png" alt="" style={{
-              position: 'absolute', bottom: -6, right: -6, zIndex: 3,
-              width: '18vw', maxWidth: 80, height: 'auto',
-              pointerEvents: 'none', userSelect: 'none'
-            }} />
+            <div ref={mapRef} style={{ width: '100%', height: '100%' }} />
           </div>
 
           <div style={{
@@ -207,16 +202,6 @@ function App() {
               position: 'absolute', inset: 0,
               background: 'linear-gradient(180deg, transparent 50%, rgba(13,40,24,0.7) 100%)',
               pointerEvents: 'none'
-            }} />
-            <img src="/paleta/pngwing.com.png" alt="" style={{
-              position: 'absolute', top: 0, right: 0, zIndex: 2,
-              width: '18vw', maxWidth: 80, height: 'auto',
-              pointerEvents: 'none', userSelect: 'none'
-            }} />
-            <img src="/paleta/pngegg.png" alt="" style={{
-              position: 'absolute', bottom: 0, left: 0, zIndex: 2,
-              width: '20vw', maxWidth: 90, height: 'auto',
-              pointerEvents: 'none', userSelect: 'none'
             }} />
           </div>
         </div>
