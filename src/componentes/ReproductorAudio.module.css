@@ -1,0 +1,72 @@
+.envoltura {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  z-index: 200;
+}
+
+.boton {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 38% 32%, #ff6b6b, var(--rojo) 55%, var(--rojo-oscuro));
+  box-shadow:
+    0 4px 20px rgba(196,30,58,0.5),
+    inset 0 -3px 8px rgba(0,0,0,0.2),
+    inset 0 3px 8px rgba(255,255,255,0.15);
+  transition: transform 0.2s;
+}
+
+.boton:active {
+  transform: scale(0.92);
+}
+
+.boton::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 11px;
+  background: #5c3a1e;
+  border-radius: 2px;
+  z-index: 1;
+}
+
+.boton::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-18deg);
+  width: 12px;
+  height: 7px;
+  background: radial-gradient(ellipse at 50% 60%, #3a8a3a, #1a5a1a);
+  border-radius: 50% 50% 50% 0;
+  z-index: 1;
+}
+
+.activo {
+  animation: latir 1.4s ease-in-out infinite;
+}
+
+@keyframes latir {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 20px rgba(196,30,58,0.5), inset 0 -3px 8px rgba(0,0,0,0.2), inset 0 3px 8px rgba(255,255,255,0.15); }
+  50% { transform: scale(1.1); box-shadow: 0 6px 30px rgba(196,30,58,0.7), inset 0 -3px 8px rgba(0,0,0,0.2), inset 0 3px 8px rgba(255,255,255,0.15); }
+}
+
+.icono {
+  position: relative;
+  z-index: 2;
+  color: white;
+  width: 22px;
+  height: 22px;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+}

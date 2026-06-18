@@ -1,8 +1,20 @@
-import { useRef, useState, useEffect, useCallback } from 'react'
+import { useCallback, useRef, useEffect, useState } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import './App.css'
-import { CalendarIcon, ClockIcon, MapPinIcon, HeartIcon, StarIcon, MusicIcon, PauseIcon, CrownIcon, SparklesIcon, BookIcon, CastleIcon, WandIcon, TreeIcon, FlowerIcon } from './icons'
+import './App.modulo.css'
+import {
+  Heart as HeartIcon,
+  Star as StarIcon,
+  BookOpen as BookIcon,
+  Castle as CastleIcon,
+  TreePine as TreeIcon,
+  Flower2 as FlowerIcon,
+  Crown as CrownIcon,
+} from 'lucide-react'
+import HeaderMagico from './componentes/HeaderMagico'
+import MarcoFoto from './componentes/MarcoFoto'
+import DetallesFiesta from './componentes/DetallesFiesta'
+import ReproductorAudio from './componentes/ReproductorAudio'
 
 delete L.Icon.Default.prototype._getIconUrl
 L.Icon.Default.mergeOptions({
@@ -24,95 +36,14 @@ const UBICACION = { lat: -26.9277535, lng: -65.3249123, nombre: 'Salon Multiusos
 const FECHA_EVENTO = new Date(2026, 5, 28, 17, 0, 0)
 
 function App() {
-  const audioRef = useRef(null)
   const mapRef = useRef(null)
   const mapInstanceRef = useRef(null)
-  const [playing, setPlaying] = useState(true)
   const [showForm, setShowForm] = useState(false)
   const [tipo, setTipo] = useState('individual')
-  const [countdown, setCountdown] = useState({ d: 0, h: 0, m: 0, s: 0 })
-
-  useEffect(() => {
-    const tick = () => {
-      const diff = FECHA_EVENTO - Date.now()
-      if (diff <= 0) return
-      setCountdown({
-        d: Math.floor(diff / 86400000),
-        h: Math.floor((diff % 86400000) / 3600000),
-        m: Math.floor((diff % 3600000) / 60000),
-        s: Math.floor((diff % 60000) / 1000),
-      })
-    }
-    tick()
-    const id = setInterval(tick, 1000)
-    return () => clearInterval(id)
-  }, [])
   const [nombre, setNombre] = useState('')
   const [apellido, setApellido] = useState('')
   const [familiaNombre, setFamiliaNombre] = useState('')
   const [cantidad, setCantidad] = useState('')
-  const interactedRef = useRef(false)
-  const interactionTimeRef = useRef(0)
-
-  useEffect(() => {
-    const audio = audioRef.current
-    if (!audio) return
-
-    const tryPlay = () => {
-      if (audio.paused) {
-        audio.play().then(() => setPlaying(true)).catch(() => {})
-      }
-    }
-
-    audio.addEventListener('canplay', tryPlay)
-    tryPlay()
-
-    const retry = setInterval(tryPlay, 300)
-    setTimeout(() => clearInterval(retry), 5000)
-
-    const onInteraction = () => {
-      if (interactedRef.current) return
-      interactionTimeRef.current = Date.now()
-      interactedRef.current = true
-      audio.muted = false
-      if (audio.paused) {
-        audio.play().then(() => setPlaying(true)).catch(() => {})
-      }
-    }
-
-    document.addEventListener('touchstart', onInteraction, { once: true })
-    document.addEventListener('mousedown', onInteraction, { once: true })
-
-    return () => {
-      audio.removeEventListener('canplay', tryPlay)
-      clearInterval(retry)
-      document.removeEventListener('touchstart', onInteraction)
-      document.removeEventListener('mousedown', onInteraction)
-    }
-  }, [])
-
-  const togglePlay = useCallback(() => {
-    const audio = audioRef.current
-    if (!audio) return
-
-    if (!interactedRef.current) {
-      interactedRef.current = true
-      audio.muted = false
-      if (audio.paused) {
-        audio.play().then(() => setPlaying(true)).catch(() => {})
-      }
-      return
-    }
-
-    if (Date.now() - interactionTimeRef.current < 300) return
-
-    if (audio.paused) {
-      audio.play().then(() => setPlaying(true)).catch(() => {})
-    } else {
-      audio.pause()
-      setPlaying(false)
-    }
-  }, [])
 
   const initMap = useCallback(() => {
     if (mapInstanceRef.current) return
@@ -123,9 +54,7 @@ function App() {
         const userLng = pos.coords.longitude
         if (!mapRef.current) return
         const map = L.map(mapRef.current, { zoomControl: false }).setView([userLat, userLng], 14)
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          maxZoom: 19,
-        }).addTo(map)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map)
         L.marker([userLat, userLng]).addTo(map).bindPopup('Tu ubicacion').openPopup()
         L.marker([UBICACION.lat, UBICACION.lng]).addTo(map).bindPopup(UBICACION.nombre).openPopup()
         mapInstanceRef.current = map
@@ -134,9 +63,7 @@ function App() {
       () => {
         if (!mapRef.current) return
         const map = L.map(mapRef.current, { zoomControl: false }).setView([UBICACION.lat, UBICACION.lng], 14)
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          maxZoom: 19,
-        }).addTo(map)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map)
         L.marker([UBICACION.lat, UBICACION.lng]).addTo(map).bindPopup(UBICACION.nombre).openPopup()
         mapInstanceRef.current = map
         setTimeout(() => map.invalidateSize(), 300)
@@ -147,22 +74,14 @@ function App() {
   useEffect(() => {
     if (!mapRef.current || mapInstanceRef.current) return
     const obs = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        initMap()
-        obs.disconnect()
-      }
+      if (entries[0].isIntersecting) { initMap(); obs.disconnect() }
     }, { threshold: 0.3 })
     obs.observe(mapRef.current)
     return () => obs.disconnect()
   }, [initMap])
 
-  const abrirFormulario = useCallback(() => {
-    setShowForm(true)
-  }, [])
-
-  const cerrarFormulario = useCallback(() => {
-    setShowForm(false)
-  }, [])
+  const abrirFormulario = useCallback(() => setShowForm(true), [])
+  const cerrarFormulario = useCallback(() => setShowForm(false), [])
 
   const enviarConfirmacion = useCallback(() => {
     let mensaje = ''
@@ -178,172 +97,186 @@ function App() {
   }, [tipo, nombre, apellido, familiaNombre, cantidad])
 
   return (
-    <>
-      <audio ref={audioRef} src="/cancion/cancion.mp3" loop preload="auto" muted autoPlay />
+    <div className="app">
+      <ReproductorAudio />
 
-      <section className="page cover">
-        <img src={IMG[0]} alt="" className="page-img" />
-        <div className="page-gradient" />
-        <div className="sparkles" />
-        <div className="fairy-dust" />
-        <div className="page-content cover-content">
-          <div className="cover-icons"><SparklesIcon className="anim-float" /> <WandIcon className="anim-glow" /> <SparklesIcon className="anim-float-delayed" /></div>
-          <p className="cover-pre">Habia una vez...</p>
-          <h1 className="cover-name">Nacia Delfina</h1>
-          <div className="cover-stars">
-            <StarIcon className="anim-float" /> <CrownIcon className="anim-glow" /> <StarIcon className="anim-float-delayed" />
-          </div>
-          <p className="cover-age">2 añitos</p>
-          <p className="cover-invite">Te invitamos a celebrar</p>
-        </div>
-      </section>
+      <HeaderMagico imgSrc={IMG[0]} />
 
-      <section className="page">
-        <img src={IMG[1]} alt="" className="page-img page-img-zoom" />
-        <div className="page-gradient" />
-        <div className="page-content page-content-center">
-          <BookIcon className="page-deco-icon anim-float" />
-          <p className="page-text">
-            Habia una vez, en un reino no muy lejano, hace no mucho tiempo, un Rey y una Reina que anhelaban una hija
+      <MarcoFoto
+        src={IMG[1]}
+        alt="Nacia Delfina"
+        zoom
+        iconoDecorativo={BookIcon}
+        decoracionTopSrc="/paleta/pngegg (12).png"
+      >
+        <p style={{ fontSize: '1.2rem', lineHeight: 1.6, color: '#f5efe0', textShadow: '0 2px 16px rgba(0,0,0,0.7)' }}>
+          Habia una vez, en un reino no muy lejano, hace no mucho tiempo, un Rey y una Reina que anhelaban una hija
+        </p>
+      </MarcoFoto>
+
+      <MarcoFoto
+        src={IMG[2]}
+        alt="Nacia Delfina"
+        iconoDecorativo={CastleIcon}
+        decoracionBottomSrc="/paleta/pngwing.com.png"
+      >
+        <p style={{ fontSize: '1.2rem', lineHeight: 1.6, color: '#f5efe0', textShadow: '0 2px 16px rgba(0,0,0,0.7)' }}>
+          Un dia, su deseo fue cumplido y fueron bendecidos con una hermosa nina que llamaron{' '}
+          <span style={{ fontFamily: "'Dancing Script', cursive", fontWeight: 700, color: '#ffd700', fontSize: '1.5rem' }}>
+            Nacia Delfina
+          </span>
+        </p>
+      </MarcoFoto>
+
+      <MarcoFoto
+        src={IMG[3]}
+        alt="Nacia Delfina"
+        filaIconos={<><TreeIcon /><FlowerIcon /><TreeIcon /></>}
+        decoracionTopSrc="/paleta/5874d03542e4d628738559ed.png"
+      >
+        <p style={{ fontSize: '1.2rem', lineHeight: 1.6, color: '#f5efe0', textShadow: '0 2px 16px rgba(0,0,0,0.7)' }}>
+          El tiempo volo y la princesa crecio, llenando cada dia de magia y alegria
+        </p>
+      </MarcoFoto>
+
+      <DetallesFiesta ubicacion={UBICACION} fechaEvento={FECHA_EVENTO} />
+
+      <section style={{
+        position: 'relative', width: '100%', minHeight: '100dvh',
+        display: 'flex', flexDirection: 'column', alignItems: 'center',
+        padding: '40px 20px 40px', gap: 12,
+        background: `linear-gradient(180deg, #0d2818 0%, #1a4a2a 50%, #0d2818 100%)`,
+        backgroundImage: `
+          radial-gradient(ellipse at 30% 20%, rgba(196,30,58,0.04) 0%, transparent 50%),
+          radial-gradient(ellipse at 70% 80%, rgba(26,60,143,0.04) 0%, transparent 50%),
+          linear-gradient(180deg, #0d2818 0%, #1a4a2a 50%, #0d2818 100%)
+        `,
+        overflow: 'hidden'
+      }}>
+        <div style={{
+          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14,
+          position: 'relative', zIndex: 2, width: '100%', maxWidth: 380
+        }}>
+          <HeartIcon style={{ width: 28, height: 28, color: 'var(--rojo-claro)', opacity: 0.7 }} className="anim-latir" />
+          <h2 style={{
+            fontFamily: "'Dancing Script', cursive", fontSize: '2.4rem', fontWeight: 700,
+            color: '#ffd700', textAlign: 'center', textShadow: '0 2px 20px rgba(0,0,0,0.5), 0 0 30px rgba(255,215,0,0.1)'
+          }}>
+            Confirma tu presencia
+          </h2>
+          <p style={{ fontSize: '1rem', color: '#f5efe0', textAlign: 'center', textShadow: '0 1px 12px rgba(0,0,0,0.5)' }}>
+            Decinos si venis para esperarte con todo el amor
           </p>
-        </div>
-      </section>
-
-      <section className="page">
-        <img src={IMG[2]} alt="" className="page-img" />
-        <div className="page-gradient" />
-        <div className="page-content page-content-center">
-          <CastleIcon className="page-deco-icon anim-float-delayed" />
-          <p className="page-text">
-            Un dia, su deseo fue cumplido y fueron bendecidos con una hermosa nina que llamaron <span className="page-name">Nacia Delfina</span>
-          </p>
-        </div>
-      </section>
-
-      <section className="page">
-        <img src={IMG[3]} alt="" className="page-img" />
-        <div className="page-gradient" />
-        <div className="page-content page-content-center">
-          <div className="page-deco-row"><TreeIcon /> <FlowerIcon /> <TreeIcon /></div>
-          <p className="page-text">
-            El tiempo volo y la princesa crecio, llenando cada dia de magia y alegria
-          </p>
-        </div>
-      </section>
-
-      <section className="page">
-        <img src={IMG[4]} alt="" className="page-img" />
-        <div className="page-gradient" />
-        <div className="page-content page-content-center">
-          <CrownIcon className="page-deco-icon anim-glow" />
-          <p className="page-text page-text-center">El palacio esta de fiesta</p>
-          <h2 className="page-title">porque nuestra princesa</h2>
-          <p className="page-age">cumple 2 añitos</p>
-          <div className="detail-cards">
-            <div className="detail-card">
-              <div className="detail-icon"><CalendarIcon /></div>
-              <div>
-                <p className="detail-label">Fecha</p>
-                <p className="detail-value">Domingo 28 de Junio</p>
-              </div>
-            </div>
-            <div className="detail-card">
-              <div className="detail-icon"><ClockIcon /></div>
-              <div>
-                <p className="detail-label">Hora</p>
-                <p className="detail-value">17:00 hs</p>
-              </div>
-            </div>
-            <div className="detail-card">
-              <div className="detail-icon"><MapPinIcon /></div>
-              <div>
-                <p className="detail-label">Lugar</p>
-                <p className="detail-value">{UBICACION.nombre}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="page page-map">
-        <div className="page-solid-bg" />
-        <div className="countdown-bar">
-          <div className="countdown-block">
-            <span className="countdown-num">{String(countdown.d).padStart(2, '0')}</span>
-            <span className="countdown-unit">dias</span>
-          </div>
-          <span className="countdown-sep">:</span>
-          <div className="countdown-block">
-            <span className="countdown-num">{String(countdown.h).padStart(2, '0')}</span>
-            <span className="countdown-unit">horas</span>
-          </div>
-          <span className="countdown-sep">:</span>
-          <div className="countdown-block">
-            <span className="countdown-num">{String(countdown.m).padStart(2, '0')}</span>
-            <span className="countdown-unit">min</span>
-          </div>
-          <span className="countdown-sep">:</span>
-          <div className="countdown-block">
-            <span className="countdown-num">{String(countdown.s).padStart(2, '0')}</span>
-            <span className="countdown-unit">seg</span>
-          </div>
-        </div>
-        <div className="page-content page-map-content">
-          <h2 className="page-title">Donde es</h2>
-          <p className="page-sub">Te esperamos en</p>
-          <div ref={mapRef} className="map-container" />
-        </div>
-      </section>
-
-      <section className="page page-confirm">
-        <div className="page-solid-bg" />
-        <div className="page-content page-confirm-content">
-          <HeartIcon />
-          <h2 className="page-title">Confirma tu presencia</h2>
-          <p className="page-sub">Decinos si venis para esperarte con todo el amor</p>
-          <button className="btn-primary" onClick={abrirFormulario}>
+          <button onClick={abrirFormulario} style={{
+            width: '100%', maxWidth: 300, padding: '18px 32px', border: 'none', borderRadius: 50,
+            fontFamily: "'Fredoka', sans-serif", fontWeight: 600, fontSize: '1.05rem',
+            background: 'linear-gradient(135deg, #c41e3a, #8b0000)',
+            color: '#f5efe0', cursor: 'pointer',
+            boxShadow: '0 4px 24px rgba(196,30,58,0.3)',
+            letterSpacing: '0.5px', transition: 'transform 0.2s'
+          }}>
             Confirmar Asistencia
           </button>
-          <div className="audio-control" onClick={togglePlay}>
-            {playing ? <><PauseIcon /> Pausar musica</> : <><MusicIcon /> Reanudar musica</>}
+
+          <div style={{
+            position: 'relative', width: '100%',
+            maxWidth: 360, height: 320, borderRadius: 16, overflow: 'hidden',
+            boxShadow: '0 4px 30px rgba(0,0,0,0.4)',
+            border: '2px solid rgba(212,160,23,0.15)',
+            marginTop: 10
+          }}>
+            <div ref={mapRef} style={{ width: '100%', height: '100%' }} />
           </div>
         </div>
       </section>
 
-      <footer className="footer">
-        <div className="footer-stars">
-          <StarIcon /> <StarIcon />
+      <footer style={{
+        width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center',
+        gap: 6, padding: '40px 24px 36px', textAlign: 'center',
+        borderTop: '1px solid rgba(212,160,23,0.15)', background: '#0d2818'
+      }}>
+        <div style={{ display: 'flex', gap: 8, color: 'rgba(255,215,0,0.5)', marginBottom: 6 }}>
+          <StarIcon /><StarIcon />
         </div>
-        <p className="footer-name">Nacia Delfina</p>
-        <p className="footer-age">2 a&ntilde;itos</p>
-        <p className="footer-thanks">Gracias por ser parte de este sueno</p>
+        <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: '1.5rem', fontWeight: 600, color: '#ffeaa7' }}>
+          Nacia Delfina
+        </p>
+        <p style={{ fontSize: '0.95rem', color: 'rgba(245,239,224,0.35)' }}>2 añitos</p>
+        <p style={{ fontSize: '0.85rem', color: 'rgba(245,239,224,0.2)', marginTop: 4 }}>
+          Gracias por ser parte de este sueno
+        </p>
       </footer>
 
       {showForm && (
-        <div className="modal-overlay" onClick={cerrarFormulario}>
-          <div className="modal" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={cerrarFormulario}>x</button>
-            <h2 className="modal-title">Confirmar Asistencia</h2>
-            <div className="tipo-selector">
-              <button className={`tipo-btn ${tipo === 'individual' ? 'active' : ''}`} onClick={() => setTipo('individual')}>Individual</button>
-              <button className={`tipo-btn ${tipo === 'familia' ? 'active' : ''}`} onClick={() => setTipo('familia')}>Familia</button>
+        <div onClick={cerrarFormulario} style={{
+          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.75)',
+          display: 'flex', alignItems: 'flex-end', zIndex: 100,
+          animation: 'fadeIn 0.2s ease'
+        }}>
+          <div onClick={(e) => e.stopPropagation()} style={{
+            width: '100%', maxWidth: 480, margin: '0 auto',
+            background: 'linear-gradient(180deg, #1a4a2a, #0d2818)',
+            borderRadius: '24px 24px 0 0', padding: '28px 20px 40px',
+            display: 'flex', flexDirection: 'column', gap: 14, position: 'relative',
+            borderTop: '2px solid rgba(212,160,23,0.15)'
+          }}>
+            <button onClick={cerrarFormulario} style={{
+              position: 'absolute', top: 16, right: 20,
+              background: 'none', border: 'none', color: 'rgba(245,239,224,0.4)',
+              fontSize: '1.4rem', cursor: 'pointer', fontFamily: "'Fredoka', sans-serif"
+            }}>x</button>
+            <h2 style={{
+              fontFamily: "'Dancing Script', cursive", fontSize: '1.8rem', fontWeight: 700,
+              color: '#ffd700', textAlign: 'center', marginBottom: 4
+            }}>Confirmar Asistencia</h2>
+            <div style={{ display: 'flex', gap: 10 }}>
+              <button onClick={() => setTipo('individual')} style={{
+                flex: 1, padding: 12, border: `2px solid ${tipo === 'individual' ? '#c41e3a' : 'rgba(212,160,23,0.15)'}`,
+                borderRadius: 12, background: tipo === 'individual' ? 'rgba(196,30,58,0.12)' : 'rgba(255,255,255,0.03)',
+                fontFamily: "'Fredoka', sans-serif", color: '#f5efe0', fontSize: '0.95rem', fontWeight: 500, cursor: 'pointer'
+              }}>Individual</button>
+              <button onClick={() => setTipo('familia')} style={{
+                flex: 1, padding: 12, border: `2px solid ${tipo === 'familia' ? '#c41e3a' : 'rgba(212,160,23,0.15)'}`,
+                borderRadius: 12, background: tipo === 'familia' ? 'rgba(196,30,58,0.12)' : 'rgba(255,255,255,0.03)',
+                fontFamily: "'Fredoka', sans-serif", color: '#f5efe0', fontSize: '0.95rem', fontWeight: 500, cursor: 'pointer'
+              }}>Familia</button>
             </div>
             {tipo === 'individual' ? (
               <>
-                <input className="input" type="text" placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
-                <input className="input" type="text" placeholder="Apellido" value={apellido} onChange={(e) => setApellido(e.target.value)} />
+                <input placeholder="Nombre" value={nombre} onChange={(e) => setNombre(e.target.value)}
+                  style={{ width: '100%', padding: '14px 16px', border: '2px solid rgba(212,160,23,0.15)',
+                    borderRadius: 12, background: 'rgba(255,255,255,0.03)', fontFamily: "'Patrick Hand', cursive",
+                    color: '#f5efe0', fontSize: '1rem', outline: 'none' }} />
+                <input placeholder="Apellido" value={apellido} onChange={(e) => setApellido(e.target.value)}
+                  style={{ width: '100%', padding: '14px 16px', border: '2px solid rgba(212,160,23,0.15)',
+                    borderRadius: 12, background: 'rgba(255,255,255,0.03)', fontFamily: "'Patrick Hand', cursive",
+                    color: '#f5efe0', fontSize: '1rem', outline: 'none' }} />
               </>
             ) : (
               <>
-                <input className="input" type="text" placeholder="Nombre de la familia" value={familiaNombre} onChange={(e) => setFamiliaNombre(e.target.value)} />
-                <input className="input" type="number" placeholder="Cantidad de integrantes" value={cantidad} onChange={(e) => setCantidad(e.target.value)} min="1" />
+                <input placeholder="Nombre de la familia" value={familiaNombre} onChange={(e) => setFamiliaNombre(e.target.value)}
+                  style={{ width: '100%', padding: '14px 16px', border: '2px solid rgba(212,160,23,0.15)',
+                    borderRadius: 12, background: 'rgba(255,255,255,0.03)', fontFamily: "'Patrick Hand', cursive",
+                    color: '#f5efe0', fontSize: '1rem', outline: 'none' }} />
+                <input type="number" placeholder="Cantidad de integrantes" value={cantidad} onChange={(e) => setCantidad(e.target.value)} min="1"
+                  style={{ width: '100%', padding: '14px 16px', border: '2px solid rgba(212,160,23,0.15)',
+                    borderRadius: 12, background: 'rgba(255,255,255,0.03)', fontFamily: "'Patrick Hand', cursive",
+                    color: '#f5efe0', fontSize: '1rem', outline: 'none' }} />
               </>
             )}
-            <button className="btn-primary modal-btn" onClick={enviarConfirmacion}>Enviar por WhatsApp</button>
+            <button onClick={enviarConfirmacion} style={{
+              width: '100%', padding: '18px 32px', border: 'none', borderRadius: 50,
+              fontFamily: "'Fredoka', sans-serif", fontWeight: 600, fontSize: '1.05rem',
+              background: 'linear-gradient(135deg, #c41e3a, #8b0000)',
+              color: '#f5efe0', cursor: 'pointer',
+              boxShadow: '0 4px 24px rgba(196,30,58,0.3)', marginTop: 4
+            }}>
+              Enviar por WhatsApp
+            </button>
           </div>
         </div>
       )}
-    </>
+    </div>
   )
 }
 

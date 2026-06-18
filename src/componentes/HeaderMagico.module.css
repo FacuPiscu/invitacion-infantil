@@ -1,0 +1,214 @@
+.seccion {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.fondoImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: brightness(0.7) contrast(1.08) saturate(1.05);
+}
+
+.gradiente {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(13,40,24,0.15) 0%,
+    rgba(13,40,24,0.05) 25%,
+    rgba(26,60,143,0.25) 45%,
+    rgba(13,40,24,0.5) 60%,
+    rgba(13,40,24,0.85) 100%
+  );
+}
+
+.centelleos {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 18%, rgba(255,215,0,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 28% 58%, rgba(255,234,167,0.5) 0%, transparent 100%),
+    radial-gradient(2px 2px at 45% 8%, rgba(255,215,0,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 65% 35%, rgba(255,234,167,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 82% 72%, rgba(255,215,0,0.6) 0%, transparent 100%),
+    radial-gradient(2px 2px at 18% 82%, rgba(255,234,167,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 90%, rgba(255,215,0,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 90% 12%, rgba(255,234,167,0.6) 0%, transparent 100%),
+    radial-gradient(2px 2px at 38% 40%, rgba(255,215,0,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 72% 50%, rgba(255,234,167,0.5) 0%, transparent 100%);
+  animation: centellear 4s ease-in-out infinite;
+}
+
+@keyframes centellear {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.polvoHadas {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.polvoHadas::before,
+.polvoHadas::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  top: -100%;
+  left: 0;
+  background-repeat: no-repeat;
+  animation: caerPolvo 9s linear infinite;
+}
+
+.polvoHadas::before {
+  background-image:
+    radial-gradient(2.5px 2.5px at 8% 10%, rgba(255,215,0,0.8) 0%, transparent 100%),
+    radial-gradient(2px 2px at 22% 40%, rgba(255,234,167,0.6) 0%, transparent 100%),
+    radial-gradient(3px 3px at 35% 15%, rgba(255,215,0,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 48% 55%, rgba(255,234,167,0.7) 0%, transparent 100%),
+    radial-gradient(2.5px 2.5px at 60% 25%, rgba(255,215,0,0.4) 0%, transparent 100%),
+    radial-gradient(2px 2px at 75% 60%, rgba(255,234,167,0.6) 0%, transparent 100%),
+    radial-gradient(2.5px 2.5px at 88% 30%, rgba(255,215,0,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 95% 70%, rgba(255,234,167,0.4) 0%, transparent 100%);
+  background-size: 5px 5px, 4px 4px, 6px 6px, 3px 3px, 5px 5px, 4px 4px, 5px 5px, 3px 3px;
+}
+
+.polvoHadas::after {
+  background-image:
+    radial-gradient(2px 2px at 15% 30%, rgba(255,215,0,0.5) 0%, transparent 100%),
+    radial-gradient(2.5px 2.5px at 28% 70%, rgba(255,234,167,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 42% 20%, rgba(255,215,0,0.6) 0%, transparent 100%),
+    radial-gradient(3px 3px at 55% 80%, rgba(255,234,167,0.5) 0%, transparent 100%),
+    radial-gradient(2px 2px at 68% 35%, rgba(255,215,0,0.4) 0%, transparent 100%),
+    radial-gradient(2.5px 2.5px at 82% 65%, rgba(255,234,167,0.7) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 92% 15%, rgba(255,215,0,0.3) 0%, transparent 100%),
+    radial-gradient(2.5px 2.5px at 5% 85%, rgba(255,234,167,0.5) 0%, transparent 100%);
+  background-size: 4px 4px, 5px 5px, 3px 3px, 6px 6px, 4px 4px, 5px 5px, 3px 3px, 5px 5px;
+  animation-duration: 11s;
+  animation-delay: -4s;
+}
+
+@keyframes caerPolvo {
+  0% { transform: translateY(0); opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translateY(50%); opacity: 0; }
+}
+
+.contenido {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px;
+}
+
+.pre {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.85rem;
+  color: var(--crema);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.6);
+}
+
+.nombre {
+  font-family: 'Dancing Script', cursive;
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--oro);
+  text-shadow: 0 2px 30px rgba(0,0,0,0.7), 0 0 60px var(--oro-sombra);
+  line-height: 1.05;
+  animation: latirOro 2s ease-in-out infinite;
+}
+
+@keyframes latirOro {
+  0%, 100% { filter: brightness(1); text-shadow: 0 2px 30px rgba(0,0,0,0.7), 0 0 60px var(--oro-sombra); }
+  50% { filter: brightness(1.15); text-shadow: 0 2px 30px rgba(0,0,0,0.7), 0 0 80px var(--oro-sombra-fuerte); }
+}
+
+.edad {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--oro);
+  text-shadow: 0 2px 20px rgba(0,0,0,0.6), 0 0 30px var(--oro-sombra);
+}
+
+.invitacion {
+  font-size: 1.1rem;
+  color: var(--crema);
+  margin-top: 4px;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.6);
+}
+
+.iconos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  opacity: 0.5;
+}
+
+.iconos svg {
+  width: 20px;
+  height: 20px;
+  color: var(--oro-claro);
+}
+
+.iconos svg:nth-child(2) {
+  color: var(--oro);
+  width: 24px;
+  height: 24px;
+}
+
+.estrella {
+  display: flex;
+  gap: 10px;
+  color: var(--crema-sombra);
+}
+
+.decoracionSup {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  width: min(200px, 38vw);
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  transform: translate(8%, -8%);
+}
+
+.decoracionInf {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  width: min(220px, 40vw);
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  transform: translate(-4%, 4%);
+}

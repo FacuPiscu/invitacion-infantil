@@ -1,0 +1,74 @@
+:root {
+  --azul-rey: #1a3c8f;
+  --azul-rey-oscuro: #0f2a6e;
+  --azul-rey-claro: #2a5cbf;
+  --oro: #ffd700;
+  --oro-oscuro: #b8860b;
+  --oro-claro: #ffeaa7;
+  --oro-brillante: #fff2b0;
+  --rojo: #c41e3a;
+  --rojo-oscuro: #8b0000;
+  --rojo-claro: #ff4757;
+  --bosque: #0d2818;
+  --bosque-medio: #1a4a2a;
+  --bosque-claro: #2d6a3f;
+  --crema: #f5efe0;
+  --crema-oscuro: #e8dcc8;
+  --crema-sombra: rgba(245,239,224,0.35);
+  --oro-sombra: rgba(255,215,0,0.12);
+  --oro-sombra-fuerte: rgba(255,215,0,0.25);
+  --borde-oro: rgba(212,160,23,0.2);
+}
+
+.app {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  background: var(--bosque);
+  position: relative;
+}
+
+.seccion {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.seccion:last-of-type {
+  height: auto;
+  min-height: 100dvh;
+}
+
+@keyframes flotar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes brillar {
+  0%, 100% { filter: brightness(1); opacity: 0.6; }
+  50% { filter: brightness(1.4); opacity: 1; }
+}
+
+@keyframes latir {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+@keyframes polvoCaer {
+  0% { transform: translateY(-10%); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateY(60%); opacity: 0; }
+}
+
+@keyframes abrirPortal {
+  from { clip-path: circle(0% at 50% 50%); opacity: 0; }
+  to { clip-path: circle(100% at 50% 50%); opacity: 1; }
+}
+
+.anim-flotar { animation: flotar 3s ease-in-out infinite; }
+.anim-flotar-retrasado { animation: flotar 3s ease-in-out infinite; animation-delay: -1.5s; }
+.anim-brillar { animation: brillar 2s ease-in-out infinite; }
+.anim-latir { animation: latir 1.5s ease-in-out infinite; }

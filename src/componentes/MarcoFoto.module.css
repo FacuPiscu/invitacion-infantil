@@ -1,0 +1,172 @@
+.seccion {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fondoImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: brightness(0.7) contrast(1.08) saturate(1.05);
+}
+
+.fondoImgZoom {
+  object-position: center 20%;
+  transform: scale(1.15);
+  filter: brightness(0.7) contrast(1.1) saturate(1.06);
+}
+
+.gradiente {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(13,40,24,0.1) 0%,
+    rgba(13,40,24,0.05) 25%,
+    rgba(26,60,143,0.2) 40%,
+    rgba(13,40,24,0.4) 55%,
+    rgba(13,40,24,0.75) 75%,
+    rgba(13,40,24,0.92) 100%
+  );
+}
+
+.marcoExterior {
+  position: relative;
+  z-index: 3;
+  width: 82%;
+  max-width: 320px;
+  aspect-ratio: 3 / 4;
+  border-radius: 50% / 60% 60% 40% 40%;
+  overflow: hidden;
+  border: 3px solid var(--oro-oscuro);
+  box-shadow:
+    0 0 0 5px var(--oro),
+    0 0 0 8px var(--oro-oscuro),
+    0 0 0 11px var(--oro),
+    0 0 0 14px var(--oro-oscuro),
+    0 0 40px var(--oro-sombra-fuerte),
+    inset 0 0 40px rgba(0,0,0,0.5);
+  animation: abrirPortal 1s ease-out both;
+}
+
+@keyframes abrirPortal {
+  from { clip-path: circle(0% at 50% 50%); opacity: 0; transform: scale(0.8); }
+  to { clip-path: circle(100% at 50% 50%); opacity: 1; transform: scale(1); }
+}
+
+.marcoExterior::before {
+  content: '';
+  position: absolute;
+  inset: -18px;
+  border-radius: 50% / 60% 60% 40% 40%;
+  border: 2px solid rgba(255,215,0,0.15);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.marcoExterior::after {
+  content: '';
+  position: absolute;
+  inset: -28px;
+  border-radius: 50% / 60% 60% 40% 40%;
+  border: 1px solid rgba(255,215,0,0.08);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+.contenidoTexto {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  padding: 70px 24px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  background: linear-gradient(0deg, rgba(13,40,24,0.85) 0%, rgba(13,40,24,0.5) 40%, transparent 100%);
+}
+
+.iconoDecorativo {
+  width: 28px;
+  height: 28px;
+  color: var(--oro-claro);
+  opacity: 0.6;
+  margin-bottom: 4px;
+}
+
+.texto {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--crema);
+  text-shadow: 0 2px 16px rgba(0,0,0,0.7), 0 0 8px rgba(0,0,0,0.3);
+}
+
+.textoNombre {
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  color: var(--oro);
+  font-size: 1.5rem;
+}
+
+.filaIconos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 6px;
+  opacity: 0.4;
+}
+
+.filaIconos svg {
+  width: 22px;
+  height: 22px;
+  color: var(--bosque-claro);
+}
+
+.filaIconos svg:first-child,
+.filaIconos svg:last-child {
+  color: var(--oro-claro);
+}
+
+.decoracionTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: min(160px, 30vw);
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  transform: translate(-10%, -10%);
+}
+
+.decoracionBottom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  width: min(180px, 34vw);
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  transform: translate(6%, 6%);
+}

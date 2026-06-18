@@ -1,0 +1,179 @@
+.seccion {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px 40px;
+  background: linear-gradient(180deg, var(--bosque) 0%, var(--bosque-medio) 50%, var(--bosque) 100%);
+  background-image:
+    radial-gradient(ellipse at 30% 20%, rgba(196,30,58,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(26,60,143,0.04) 0%, transparent 50%);
+  overflow: hidden;
+}
+
+.fondoDecorativo {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.decoracionTop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  width: min(160px, 30vw);
+  height: auto;
+  transform: translate(8%, -8%);
+}
+
+.decoracionBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  width: min(180px, 34vw);
+  height: auto;
+  transform: translate(-6%, 6%);
+}
+
+.contenido {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.textoIntro {
+  font-size: 1rem;
+  color: var(--crema);
+  text-align: center;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.5);
+}
+
+.titulo {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--oro);
+  text-align: center;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5), 0 0 30px var(--oro-sombra);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.edad {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--oro);
+  text-align: center;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.5), 0 0 50px var(--oro-sombra);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.tarjetas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.tarjeta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(13,40,24,0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--borde-oro);
+  border-radius: 14px;
+  padding: 14px 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tarjeta:active {
+  transform: scale(0.98);
+}
+
+.iconoTarjeta {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--oro-sombra);
+  border-radius: 10px;
+  color: var(--oro-claro);
+  flex-shrink: 0;
+}
+
+.labelTarjeta {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--crema-sombra);
+  margin-bottom: 1px;
+  font-weight: 500;
+}
+
+.valorTarjeta {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--crema);
+}
+
+.countdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 18px;
+  padding: 14px 20px;
+  background: rgba(13,40,24,0.4);
+  border-radius: 16px;
+  border: 1px solid var(--borde-oro);
+  width: 100%;
+}
+
+.bloqueCountdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  min-width: 50px;
+}
+
+.numCountdown {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--oro);
+  line-height: 1;
+  text-shadow: 0 2px 20px var(--oro-sombra);
+}
+
+.unitCountdown {
+  font-size: 0.55rem;
+  color: var(--crema-sombra);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 2px;
+}
+
+.sepCountdown {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--crema-sombra);
+  margin-top: -4px;
+}
