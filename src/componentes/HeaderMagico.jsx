@@ -9,9 +9,6 @@ export default function HeaderMagico({ imgSrc }) {
       <div className={estilos.centelleos} />
       <div className={estilos.polvoHadas} />
 
-      <img src="/paleta/pngwing.com.png" alt="" className={estilos.decoracionSup} />
-      <img src="/paleta/pngegg (12).png" alt="" className={estilos.decoracionInf} />
-
       <div className={estilos.contenido}>
         <div className={estilos.iconos}>
           <SparklesIcon className="anim-flotar" />

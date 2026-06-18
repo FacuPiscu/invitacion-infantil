@@ -107,7 +107,6 @@ function App() {
         alt="Nacia Delfina"
         zoom
         iconoDecorativo={BookIcon}
-        decoracionTopSrc="/paleta/pngegg (12).png"
       >
         <p style={{ fontSize: '1.2rem', lineHeight: 1.6, color: '#f5efe0', textShadow: '0 2px 16px rgba(0,0,0,0.7)' }}>
           Habia una vez, en un reino no muy lejano, hace no mucho tiempo, un Rey y una Reina que anhelaban una hija
@@ -118,7 +117,6 @@ function App() {
         src={IMG[2]}
         alt="Nacia Delfina"
         iconoDecorativo={CastleIcon}
-        decoracionBottomSrc="/paleta/pngwing.com.png"
       >
         <p style={{ fontSize: '1.2rem', lineHeight: 1.6, color: '#f5efe0', textShadow: '0 2px 16px rgba(0,0,0,0.7)' }}>
           Un dia, su deseo fue cumplido y fueron bendecidos con una hermosa nina que llamaron{' '}
@@ -132,7 +130,6 @@ function App() {
         src={IMG[3]}
         alt="Nacia Delfina"
         filaIconos={<><TreeIcon /><FlowerIcon /><TreeIcon /></>}
-        decoracionTopSrc="/paleta/5874d03542e4d628738559ed.png"
       >
         <p style={{ fontSize: '1.2rem', lineHeight: 1.6, color: '#f5efe0', textShadow: '0 2px 16px rgba(0,0,0,0.7)' }}>
           El tiempo volo y la princesa crecio, llenando cada dia de magia y alegria
