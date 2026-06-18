@@ -56,32 +56,18 @@ function App() {
     const audio = audioRef.current
     if (!audio) return
 
-    const tryPlay = () => {
-      if (audio.paused) {
-        audio.play()
-          .then(() => setPlaying(true))
-          .catch(() => {})
-      }
-    }
+    const t = setTimeout(() => {
+      audio.muted = false
+    }, 500)
 
-    audio.addEventListener('canplay', tryPlay)
-    audio.addEventListener('loadedmetadata', tryPlay)
-
-    tryPlay()
-
-    const retry = setInterval(tryPlay, 300)
-    setTimeout(() => clearInterval(retry), 5000)
-
-    const onInteraction = () => tryPlay()
-    document.addEventListener('touchstart', onInteraction, { once: true })
-    document.addEventListener('click', onInteraction, { once: true })
+    const unmute = () => { audio.muted = false }
+    document.addEventListener('touchstart', unmute, { once: true })
+    document.addEventListener('click', unmute, { once: true })
 
     return () => {
-      audio.removeEventListener('canplay', tryPlay)
-      audio.removeEventListener('loadedmetadata', tryPlay)
-      clearInterval(retry)
-      document.removeEventListener('touchstart', onInteraction)
-      document.removeEventListener('click', onInteraction)
+      clearTimeout(t)
+      document.removeEventListener('touchstart', unmute)
+      document.removeEventListener('click', unmute)
     }
   }, [])
 
@@ -161,7 +147,7 @@ function App() {
 
   return (
     <>
-      <audio ref={audioRef} src="/cancion/cancion.mp3" loop preload="auto" />
+      <audio ref={audioRef} src="/cancion/cancion.mp3" loop preload="auto" muted autoPlay />
 
       <section className="page cover">
         <img src={IMG[0]} alt="" className="page-img" />
@@ -286,7 +272,7 @@ function App() {
             Confirmar Asistencia
           </button>
           <div className="audio-control" onClick={togglePlay}>
-            {playing ? <><MusicIcon /> Musica sonando</> : <><PauseIcon /> Reanudar musica</>}
+            {playing ? <><PauseIcon /> Pausar musica</> : <><MusicIcon /> Reanudar musica</>}
           </div>
         </div>
       </section>
