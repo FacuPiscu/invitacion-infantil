@@ -185,8 +185,7 @@ function App() {
         <img src={IMG[0]} alt="" className="page-img" />
         <div className="page-gradient" />
         <div className="sparkles" />
-        <img src="/paleta/5874d03542e4d628738559ed.png" alt="" className="deco-img deco-corner-bl" />
-        <img src="/paleta/pngegg (12).png" alt="" className="deco-img deco-corner-br" />
+        <img src="/paleta/pngwing.com.png" alt="" className="deco deco-br" />
         <div className="page-content cover-content">
           <div className="cover-icons"><SparklesIcon /> <WandIcon /> <SparklesIcon /></div>
           <p className="cover-pre">Habia una vez...</p>
@@ -202,7 +201,7 @@ function App() {
       <section className="page">
         <img src={IMG[1]} alt="" className="page-img page-img-zoom" />
         <div className="page-gradient" />
-        <img src="/paleta/pngegg (12).png" alt="" className="deco-img deco-corner-bl" />
+        <img src="/paleta/pngegg (12).png" alt="" className="deco deco-bl" />
         <div className="page-content page-content-center">
           <BookIcon className="page-deco-icon" />
           <p className="page-text">
@@ -214,8 +213,7 @@ function App() {
       <section className="page">
         <img src={IMG[2]} alt="" className="page-img" />
         <div className="page-gradient" />
-        <img src="/paleta/pngwing.com.png" alt="" className="deco-img deco-corner-bl" />
-        <img src="/paleta/pngegg (12).png" alt="" className="deco-img deco-corner-tr" />
+        <img src="/paleta/5874d03542e4d628738559ed.png" alt="" className="deco deco-br" />
         <div className="page-content page-content-center">
           <CastleIcon className="page-deco-icon" />
           <p className="page-text">
@@ -227,8 +225,7 @@ function App() {
       <section className="page">
         <img src={IMG[3]} alt="" className="page-img" />
         <div className="page-gradient" />
-        <img src="/paleta/5874d03542e4d628738559ed.png" alt="" className="deco-img deco-corner-tl" />
-        <img src="/paleta/pngwing.com.png" alt="" className="deco-img deco-corner-br" />
+        <img src="/paleta/pngwing.com.png" alt="" className="deco deco-bl" />
         <div className="page-content page-content-center">
           <div className="page-deco-row"><TreeIcon /> <FlowerIcon /> <TreeIcon /></div>
           <p className="page-text">
@@ -240,8 +237,7 @@ function App() {
       <section className="page">
         <img src={IMG[4]} alt="" className="page-img" />
         <div className="page-gradient" />
-        <img src="/paleta/pngwing.com.png" alt="" className="deco-img deco-corner-tl" />
-        <img src="/paleta/5874d03542e4d628738559ed.png" alt="" className="deco-img deco-corner-br" />
+        <img src="/paleta/pngegg (12).png" alt="" className="deco deco-tr" />
         <div className="page-content page-content-center">
           <CrownIcon className="page-deco-icon" />
           <p className="page-text page-text-center">El palacio esta de fiesta</p>
@@ -296,8 +292,6 @@ function App() {
             <span className="countdown-unit">seg</span>
           </div>
         </div>
-        <img src="/paleta/5874d03542e4d628738559ed.png" alt="" className="deco-img deco-corner-bl" />
-        <img src="/paleta/pngwing.com.png" alt="" className="deco-img deco-corner-tr deco-lg" />
         <div className="page-content page-map-content">
           <h2 className="page-title">Donde es</h2>
           <p className="page-sub">Te esperamos en</p>
@@ -307,8 +301,6 @@ function App() {
 
       <section className="page page-confirm">
         <div className="page-solid-bg" />
-        <img src="/paleta/pngegg (12).png" alt="" className="deco-img deco-corner-tl" />
-        <img src="/paleta/5874d03542e4d628738559ed.png" alt="" className="deco-img deco-corner-br" />
         <div className="page-content page-confirm-content">
           <HeartIcon />
           <h2 className="page-title">Confirma tu presencia</h2>

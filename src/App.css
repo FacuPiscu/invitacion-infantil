@@ -592,9 +592,9 @@ html, body {
   height: 24px;
 }
 
-/* ── DECORATIVE CORNER / SIDE IMAGES ── */
+/* ── DECORATIVE IMAGES ── */
 
-.deco-img {
+.deco {
   position: absolute;
   z-index: 2;
   pointer-events: none;
@@ -603,36 +603,36 @@ html, body {
   object-fit: contain;
 }
 
-.deco-corner-bl {
+.deco-bl {
   bottom: 0;
   left: 0;
-  width: min(200px, 38vw);
+  width: min(220px, 40vw);
   height: auto;
-  transform: translate(-8%, 8%);
+  transform: translate(-2%, 4%);
 }
 
-.deco-corner-br {
+.deco-br {
   bottom: 0;
   right: 0;
-  width: min(200px, 38vw);
+  width: min(220px, 40vw);
   height: auto;
-  transform: translate(8%, 8%);
+  transform: translate(2%, 4%);
 }
 
-.deco-corner-tl {
-  top: 0;
-  left: 0;
-  width: min(170px, 32vw);
-  height: auto;
-  transform: translate(-10%, -10%);
-}
-
-.deco-corner-tr {
+.deco-tr {
   top: 0;
   right: 0;
-  width: min(170px, 32vw);
+  width: min(180px, 35vw);
   height: auto;
-  transform: translate(10%, -10%);
+  transform: translate(4%, -4%);
+}
+
+.deco-tl {
+  top: 0;
+  left: 0;
+  width: min(180px, 35vw);
+  height: auto;
+  transform: translate(-4%, -4%);
 }
 
 @keyframes slideUp {
