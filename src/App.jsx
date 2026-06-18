@@ -55,15 +55,33 @@ function App() {
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
-    const playAudio = () => {
-      audio.play().then(() => setPlaying(true)).catch(() => setPlaying(false))
+
+    const tryPlay = () => {
+      if (audio.paused) {
+        audio.play()
+          .then(() => setPlaying(true))
+          .catch(() => {})
+      }
     }
-    document.addEventListener('touchstart', playAudio, { once: true })
-    document.addEventListener('click', playAudio, { once: true })
-    audio.addEventListener('loadedmetadata', playAudio)
+
+    audio.addEventListener('canplay', tryPlay)
+    audio.addEventListener('loadedmetadata', tryPlay)
+
+    tryPlay()
+
+    const retry = setInterval(tryPlay, 300)
+    setTimeout(() => clearInterval(retry), 5000)
+
+    const onInteraction = () => tryPlay()
+    document.addEventListener('touchstart', onInteraction, { once: true })
+    document.addEventListener('click', onInteraction, { once: true })
+
     return () => {
-      document.removeEventListener('touchstart', playAudio)
-      document.removeEventListener('click', playAudio)
+      audio.removeEventListener('canplay', tryPlay)
+      audio.removeEventListener('loadedmetadata', tryPlay)
+      clearInterval(retry)
+      document.removeEventListener('touchstart', onInteraction)
+      document.removeEventListener('click', onInteraction)
     }
   }, [])
 
