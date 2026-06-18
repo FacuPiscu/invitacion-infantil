@@ -186,18 +186,24 @@ function App() {
           </div>
 
           <div style={{
-            position: 'relative', width: '100%', maxWidth: 360,
-            aspectRatio: 'auto', height: 320,
-            borderRadius: 16, overflow: 'hidden',
-            marginTop: 10, flexShrink: 0
+            width: '70%', maxWidth: 280,
+            aspectRatio: '3 / 4',
+            borderRadius: '50% / 60% 60% 40% 40%',
+            overflow: 'hidden',
+            border: '3px solid var(--oro-oscuro)',
+            boxShadow: `
+              0 0 0 5px var(--oro),
+              0 0 0 8px var(--oro-oscuro),
+              0 0 0 11px var(--oro),
+              0 0 0 14px var(--oro-oscuro),
+              0 0 40px rgba(255,215,0,0.2),
+              inset 0 0 40px rgba(0,0,0,0.5)
+            `,
+            marginTop: 10,
+            flexShrink: 0
           }}>
             <img src="/paleta/blancanieves-y-los-7-enanitos.jpg" alt="" style={{
               width: '100%', height: '100%', objectFit: 'cover', display: 'block'
-            }} />
-            <div style={{
-              position: 'absolute', inset: 0,
-              background: 'linear-gradient(180deg, transparent 50%, rgba(13,40,24,0.7) 100%)',
-              pointerEvents: 'none'
             }} />
           </div>
         </div>
