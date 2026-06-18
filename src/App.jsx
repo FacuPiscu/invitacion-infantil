@@ -202,6 +202,7 @@ function App() {
       <section className="page">
         <img src={IMG[1]} alt="" className="page-img page-img-zoom" />
         <div className="page-gradient" />
+        <img src="/paleta/pngegg (12).png" alt="" className="deco-img deco-corner-bl" />
         <div className="page-content page-content-center">
           <BookIcon className="page-deco-icon" />
           <p className="page-text">
@@ -213,7 +214,8 @@ function App() {
       <section className="page">
         <img src={IMG[2]} alt="" className="page-img" />
         <div className="page-gradient" />
-        <img src="/paleta/pngwing.com.png" alt="" className="deco-img deco-side-l" />
+        <img src="/paleta/pngwing.com.png" alt="" className="deco-img deco-corner-bl" />
+        <img src="/paleta/pngegg (12).png" alt="" className="deco-img deco-corner-tr" />
         <div className="page-content page-content-center">
           <CastleIcon className="page-deco-icon" />
           <p className="page-text">
@@ -225,6 +227,8 @@ function App() {
       <section className="page">
         <img src={IMG[3]} alt="" className="page-img" />
         <div className="page-gradient" />
+        <img src="/paleta/5874d03542e4d628738559ed.png" alt="" className="deco-img deco-corner-tl" />
+        <img src="/paleta/pngwing.com.png" alt="" className="deco-img deco-corner-br" />
         <div className="page-content page-content-center">
           <div className="page-deco-row"><TreeIcon /> <FlowerIcon /> <TreeIcon /></div>
           <p className="page-text">
@@ -236,7 +240,8 @@ function App() {
       <section className="page">
         <img src={IMG[4]} alt="" className="page-img" />
         <div className="page-gradient" />
-        <img src="/paleta/pngegg (12).png" alt="" className="deco-img deco-side-r" />
+        <img src="/paleta/pngwing.com.png" alt="" className="deco-img deco-corner-tl" />
+        <img src="/paleta/5874d03542e4d628738559ed.png" alt="" className="deco-img deco-corner-br" />
         <div className="page-content page-content-center">
           <CrownIcon className="page-deco-icon" />
           <p className="page-text page-text-center">El palacio esta de fiesta</p>

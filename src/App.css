@@ -606,53 +606,33 @@ html, body {
 .deco-corner-bl {
   bottom: 0;
   left: 0;
-  width: min(160px, 30vw);
+  width: min(200px, 38vw);
   height: auto;
-  transform: translate(-10%, 10%);
+  transform: translate(-8%, 8%);
 }
 
 .deco-corner-br {
   bottom: 0;
   right: 0;
-  width: min(160px, 30vw);
+  width: min(200px, 38vw);
   height: auto;
-  transform: translate(10%, 10%);
+  transform: translate(8%, 8%);
 }
 
 .deco-corner-tl {
   top: 0;
   left: 0;
-  width: min(120px, 25vw);
+  width: min(170px, 32vw);
   height: auto;
-  transform: translate(-15%, -15%);
+  transform: translate(-10%, -10%);
 }
 
 .deco-corner-tr {
   top: 0;
   right: 0;
-  width: min(120px, 25vw);
+  width: min(170px, 32vw);
   height: auto;
-  transform: translate(15%, -15%);
-}
-
-.deco-side-l {
-  top: 50%;
-  left: 0;
-  width: min(140px, 28vw);
-  height: auto;
-  transform: translate(-25%, -50%);
-}
-
-.deco-side-r {
-  top: 50%;
-  right: 0;
-  width: min(140px, 28vw);
-  height: auto;
-  transform: translate(25%, -50%);
-}
-
-.deco-lg {
-  width: min(220px, 45vw);
+  transform: translate(10%, -10%);
 }
 
 @keyframes slideUp {
