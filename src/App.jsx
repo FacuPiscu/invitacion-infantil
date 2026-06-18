@@ -150,6 +150,13 @@ function App() {
         `,
         overflow: 'hidden'
       }}>
+        <img src="/paleta/blancanieves-y-los-7-enanitos.jpg" alt="" style={{
+          position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)',
+          width: '70vw', height: 'auto', opacity: 0.12, pointerEvents: 'none', userSelect: 'none',
+          zIndex: 1, mixBlendMode: 'soft-light', filter: 'saturate(80%) sepia(20%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)',
+          maskImage: 'linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)'
+        }} />
         <div style={{
           display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14,
           position: 'relative', zIndex: 2, width: '100%', maxWidth: 380
